@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SAPEI Settings</title>
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="page-header">
+        <img class="logo" src="logo.png" alt="">
+        <div>
+          <h1>SAPEI Settings</h1>
+          <p>SAPEI (Secure AI Privacy Extension & Interceptor) works out of the box. Use settings only to tune labels or add local custom patterns.</p>
+        </div>
+      </header>
+
+      <section class="section">
+        <h2>Built-in Model Protection</h2>
+        <p class="hint">The bundled model detects common private data automatically. Users do not need to define rules before SAPEI can protect prompts.</p>
+        <dl class="details">
+          <div>
+            <dt>Status</dt>
+            <dd>Active</dd>
+          </div>
+          <div>
+            <dt>Model</dt>
+            <dd>openai/privacy-filter</dd>
+          </div>
+          <div>
+            <dt>Detects</dt>
+            <dd>Names, emails, phones, secrets, credentials, and common PII labels emitted by the model.</dd>
+          </div>
+          <div>
+            <dt>Version</dt>
+            <dd id="policy-version">-</dd>
+          </div>
+          <div>
+            <dt>Client</dt>
+            <dd id="client-id">-</dd>
+          </div>
+          <div>
+            <dt>Storage</dt>
+            <dd id="policy-storage">-</dd>
+          </div>
+          <div>
+            <dt>Endpoint</dt>
+            <dd id="api-url">-</dd>
+          </div>
+          <div>
+            <dt>Timeout</dt>
+            <dd id="timeout">-</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="section">
+        <h2>API Connection</h2>
+        <p class="hint">Use localhost for local development, or your HTTPS staging domain when SAPEI is deployed publicly.</p>
+        <form id="settings-form" class="settings-form">
+          <input id="api-base-url" type="text" placeholder="https://sapei-staging.example.com" required>
+          <button type="submit">Save Endpoint</button>
+        </form>
+      </section>
+
+      <section class="section">
+        <h2>Redaction Labels</h2>
+        <p class="hint">These mappings control how labels emitted by the model are rewritten. They do not change what the model detects.</p>
+        <div id="label-mappings" class="rules"></div>
+        <form id="label-form" class="form">
+          <input id="label-name" type="text" placeholder="Name, e.g. Passport" required>
+          <input id="label-aliases" type="text" placeholder="Labels, comma separated" required>
+          <input id="label-replacement" type="text" placeholder="Replacement, e.g. [PRIVATE_ID]" required>
+          <button type="submit">Add Mapping</button>
+        </form>
+      </section>
+
+      <section class="section">
+        <h2>Custom Rules</h2>
+        <p class="hint">Optional deterministic rules for patterns the built-in model may not know, such as KTP/NIK, NPWP, customer IDs, account numbers, or internal IDs.</p>
+        <div id="regex-rules" class="rules"></div>
+        <form id="regex-form" class="form">
+          <input id="regex-name" type="text" placeholder="Name, e.g. NPWP" required>
+          <input id="regex-pattern" type="text" placeholder="Regex pattern" required>
+          <input id="regex-replacement" type="text" placeholder="Replacement, e.g. [PRIVATE_NPWP]" required>
+          <label class="checkbox">
+            <input id="regex-ignore-case" type="checkbox">
+            Ignore case
+          </label>
+          <button type="submit">Add Regex Rule</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="options.js"></script>
+  </body>
+</html>

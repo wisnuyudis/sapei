@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SAPEI</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <header class="header">
+      <img class="logo" src="logo.png" alt="">
+      <div>
+        <h1>SAPEI</h1>
+        <p>Secure AI Privacy Extension & Interceptor</p>
+      </div>
+    </header>
+
+    <section class="status-section" aria-label="API status">
+      <div>
+        <span class="label">Local API</span>
+        <strong id="api-status" class="status status-checking">Checking...</strong>
+      </div>
+      <button id="refresh-status" type="button">Refresh</button>
+    </section>
+
+    <section class="section">
+      <h2>Protection Status</h2>
+      <dl class="details">
+        <div>
+          <dt>Built-in</dt>
+          <dd>Active, no setup required</dd>
+        </div>
+        <div>
+          <dt>Version</dt>
+          <dd id="policy-version">-</dd>
+        </div>
+        <div>
+          <dt>Client</dt>
+          <dd id="client-id">-</dd>
+        </div>
+        <div>
+          <dt>Labels</dt>
+          <dd id="mapping-count">-</dd>
+        </div>
+        <div>
+          <dt>Custom</dt>
+          <dd id="regex-count">-</dd>
+        </div>
+        <div>
+          <dt>Endpoint</dt>
+          <dd id="api-url">-</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="actions">
+      <button id="open-settings" class="primary" type="button">Settings</button>
+    </section>
+
+    <footer class="footer">
+      SAPEI works out of the box. Add custom rules only for local, company, or workflow-specific identifiers.
+    </footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
